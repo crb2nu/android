@@ -75,7 +75,7 @@ Special Thanks
 --------------
 
 Mad props to mik_os
+
 Shouts to beezy and Nick7 @ AndroidCentral
 
-Directions copied and slaughtered from 
-http://wiki.cyanogenmod.com/index.php?title=Compile_CyanogenMod_for_HeroC
+Directions copied and slaughtered from http://wiki.cyanogenmod.com/index.php?title=Compile_CyanogenMod_for_HeroC

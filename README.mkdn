@@ -1,50 +1,81 @@
 CyanogenMod
 ===========
 
-Submitting Patches
-------------------
-Patches are always welcome!  Please submit your patches via CyanogenMod Gerrit!
-You can do this by using these commands:
+How to Build
+============
 
-    (From root android directory)
-    . build/envsetup.sh
-    (Go to repo you are patching, make your changes and commit)
-    cmgerrit <for(new)/changes(patch set)> <branch/change-id> 
+Prepare the Build Environment
+-----------------------------
 
-    repo start gingerbread .
-    (Make your changes and commit)
-    repo upload .
-Note: "." meaning current directory
-For more help on using this tool, use this command: repo help upload
+NOTE: You only need to do these steps the first time you build. If you previously prepared your build environment, skip to Copy proprietary files.
 
-Make your changes and commit with a detailed message, starting with what you are working with (i.e. vision: Update Kernel)
-Commit your patches in a single commit. Squash multiple commit using this command: git rebase -i HEAD~<# of commits>
+Install the ADB
+Install the Android SDK.
+Install the Build Packages
 
-To view the status of your and others' patches, visit [CyanogenMod Code Review](http://review.cyanogenmod.com/)
+Install using the package manager of your choice:
+For 32-bit & 64-bit systems:
+    git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.6-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev sun-java6-jdk pngcrush schedtool
+
+For 64-bit only systems:
+    g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline5-dev gcc-4.3-multilib g++-4.3-multilib
+
+NOTE: On Ubuntu 10.10, and variants, you need to enable the parter repository to install sun-java6-jdk:
+    add-apt-repository "deb http://archive.canonical.com/ maverick partner"
+
+Create the Directories
+----------------------
+You will need to set up some directories in your build environment.
+
+To create them:
+    mkdir -p ~/bin
+    mkdir -p ~/android/system
+
+Install the Repository
+----------------------
+
+Enter the following to download make executable the "repo" binary:
+    curl http://android.git.kernel.org/repo > ~/bin/repo
+    chmod a+x ~/bin/repo
+
+NOTE: You may need to reboot for these changes to take effect.
+
+Now enter the following to initialize the repository:
+    cd ~/android/system/
+    repo init -u git://github.com/zefie/android.git -b gingerbread
+    repo sync -j16
 
 
-Getting Started
----------------
+Copy proprietary files
+----------------------
 
-To get started with Android/CyanogenMod, you'll need to get
-familiar with [Git and Repo](http://source.android.com/download/using-repo).
+You will need to set up some directories in your build environment.
 
-To initialize your local repository using the CyanogenMod trees, use a command like this:
+To create them:
+    mkdir -p ~/android/system/vendor/lge
+    mkdir -p ~/android/system/vendor/lge/thunderc
+    mkdir -p ~/android/system/vendor/lge/thunderc/files/
+    mkdir -p ~/android/system/vendor/lge/thunderc/files/system/
 
-    repo init -u git://github.com/CyanogenMod/android.git -b gingerbread
+Now a system dump into ~/android/system/vendor/lge/thunderc/files/system/.
 
-Then to sync up:
 
+Building CyanogenMod
+--------------------
+
+First, check for updates in the source:
+    cd ~/android/system/
     repo sync
 
-Please see the [CyanogenMod Wiki](http://wiki.cyanogenmod.com/) for building instructions.
+Now, the environment must be configured to build and the ROM compiled, from code, for the thunderc.
+    . build/envsetup.sh && brunch thunderc
 
-For more information on this Github Organization and how it is structured, 
-please [read the wiki article](http://wiki.cyanogenmod.com/index.php/Github_Organization)
 
-Buildbot
---------
+Special Thanks
+--------------
 
-All supported devices are built nightly and periodically as changes are committed to ensure the source trees remain buildable.
+Mad props to mik_os
+Shouts to beezy and Nick7 @ AndroidCentral
 
-You can view the current build statuses at [buildbot.teamdouche.net](http://buildbot.teamdouche.net/)
+Directions copied and slaughtered from 
+http://wiki.cyanogenmod.com/index.php?title=Compile_CyanogenMod_for_HeroC

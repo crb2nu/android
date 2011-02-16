@@ -52,9 +52,6 @@ Copy proprietary files
 You will need to set up some directories in your build environment.
 
 To create them:
-    mkdir -p ~/android/system/vendor/lge
-    mkdir -p ~/android/system/vendor/lge/thunderc
-    mkdir -p ~/android/system/vendor/lge/thunderc/files/
     mkdir -p ~/android/system/vendor/lge/thunderc/files/system/
 
 Now a system dump into ~/android/system/vendor/lge/thunderc/files/system/.

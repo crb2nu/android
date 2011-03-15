@@ -42,7 +42,7 @@ NOTE: You may need to reboot for these changes to take effect.
 
 Now enter the following to initialize the repository:
     cd ~/android/system/
-    repo init -u git://github.com/zefie/android.git -b gingerbread
+    repo init -u git://github.com/zefie/android.git -b froyo
     repo sync -j16
 
 

@@ -65,7 +65,8 @@ First, check for updates in the source:
     repo sync
 
 Now, the environment must be configured to build and the ROM compiled, from code, for the thunderc.
-    . build/envsetup.sh && brunch thunderc
+    . build/envsetup.sh
+    TARGET_PRODUCT=cyanogen_thunderc make bacon -j3
 
 
 Special Thanks
